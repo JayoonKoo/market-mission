@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router';
 import Signin from './page/Signin';
 import Home from './page/Home';
 import NotFound from './page/NotFound';
+import Signup from './page/Signup';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
 			<ConnectedRouter history={history}>
 				<Switch>
 					<Route exact path="/signin" component={Signin} />
+					<Route exact path="/signup" component={Signup} />
 					<Route exact path="/" component={Home} />
 					<Route component={NotFound} />
 				</Switch>
