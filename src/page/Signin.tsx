@@ -1,9 +1,15 @@
 import React from 'react'
+import { Redirect } from 'react-router'
+import SigninContainer from '../containers/SigninContainer'
+import useCurrentUser from '../hooks/useCurrentUser'
 
-export default function Signin() {
-	return (
-		<div>
-			로그인
-		</div>
-	)
+const Signin: React.FC = () => {
+	const user = useCurrentUser()
+	if (!!user) {
+		return <Redirect to="/" />
+	}
+	
+	return ( <SigninContainer />)
 }
+
+export default Signin
