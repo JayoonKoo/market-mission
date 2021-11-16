@@ -9,7 +9,11 @@ const Signin: React.FC = () => {
 		return <Redirect to="/" />
 	}
 	
-	return ( <SigninContainer />)
+	return ( 
+		<div className="signin-container container">
+			<SigninContainer />
+		</div>
+	)
 }
 
 export default Signin
