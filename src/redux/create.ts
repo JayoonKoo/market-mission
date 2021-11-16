@@ -17,7 +17,7 @@ const create = () => {
       auth: {
         token,
         loading: false,
-        error: null,
+        errorMsg: null,
       },
     },
     composeWithDevTools(
