@@ -8,11 +8,13 @@ import Signin from './page/Signin';
 import Home from './page/Home';
 import NotFound from './page/NotFound';
 import Signup from './page/Signup';
+import { HeaderContainer } from './containers/HeaderContainer';
 
 function App() {
   return (
 		<ErrorBoundary FallbackComponent={Error}>
 			<ConnectedRouter history={history}>
+				<HeaderContainer />
 				<Switch>
 					<Route exact path="/signin" component={Signin} />
 					<Route exact path="/signup" component={Signup} />
