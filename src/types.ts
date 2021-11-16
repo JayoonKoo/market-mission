@@ -9,13 +9,20 @@ export interface RootState {
 export type AuthState = {
   token: string | null;
   loading: boolean;
-  error: Error | null;
+  errorMsg: string | null;
   user?: User;
 };
 
 export type LoginReqType = {
   email: string;
   password: string;
+};
+
+export type SignUpReqType = {
+  email: string;
+  password: string;
+  displayName: string;
+  profileImgBase64: string | null;
 };
 
 export type User = {
