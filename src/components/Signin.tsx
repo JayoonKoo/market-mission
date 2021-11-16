@@ -1,6 +1,6 @@
 import React, { FormEvent, useRef } from "react";
 import { LoginReqType } from "../types";
-import syltes from "../styles/Sigin.module.scss"
+// import syltes from "../styles/Sigin.module.scss"
 
 interface SigninProps {
   login: (reqData: LoginReqType) => void;
