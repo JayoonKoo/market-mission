@@ -1,10 +1,5 @@
-import { LoginReqType, LoginResType, User } from "../types";
+import { LoginReqType, LoginResType, SignUpReqType, User } from "../types";
 import axios from "axios";
-
-const USER_API_URL =
-  "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login";
-const USER_API_AUTH =
-  "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/me";
 
 const headers = {
   "content-type": "application/json",
@@ -13,8 +8,13 @@ const headers = {
 };
 
 export default class UserService {
+  private static getUrl(endPoint: string): string {
+    return `https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/${endPoint}`;
+  }
+
   public static async login(reqData: LoginReqType): Promise<LoginResType> {
-    const response = await axios.post(USER_API_URL, reqData, {
+    const url = UserService.getUrl("login");
+    const response = await axios.post(url, reqData, {
       headers,
     });
 
@@ -22,8 +22,38 @@ export default class UserService {
   }
 
   public static async auth(token: string): Promise<User> {
+    const url = UserService.getUrl("me");
     const response = await axios({
-      url: USER_API_AUTH,
+      url,
+      method: "POST",
+      headers: {
+        ...headers,
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  }
+
+  public static async signup(reqData: SignUpReqType): Promise<LoginReqType> {
+    const url = UserService.getUrl("signup");
+
+    const response = await axios({
+      url,
+      method: "POST",
+      headers,
+      data: {
+        ...reqData,
+      },
+    });
+
+    return response.data;
+  }
+
+  public static async logout(token: string): Promise<boolean> {
+    const url = UserService.getUrl("logout");
+    const response = await axios({
+      url,
       method: "POST",
       headers: {
         ...headers,
